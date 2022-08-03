@@ -10,7 +10,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-public class TextEncyption {
+public class TextEncryption {
 	public static PublicKey getPublicKey(String base64PublicKey){
         PublicKey publicKey = null;
         try{
