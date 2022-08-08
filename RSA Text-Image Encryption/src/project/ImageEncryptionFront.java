@@ -76,7 +76,8 @@ public class ImageEncryptionFront extends javax.swing.JFrame {
     }                                          
 
     private void btnDecryptActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        new ImageDecryptionFront().setVisible(true);
+        this.dispose();
     }                                          
 
     /**

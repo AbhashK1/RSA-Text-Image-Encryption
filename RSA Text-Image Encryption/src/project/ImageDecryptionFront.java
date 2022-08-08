@@ -11,14 +11,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class ImageEncryptionFront2 extends javax.swing.JFrame {
+public class ImageDecryptionFront extends javax.swing.JFrame {
 
-    public ImageEncryptionFront2() {
+    public ImageDecryptionFront() {
         initComponents();
     }
-    
+
     private File f=null;
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
@@ -26,7 +26,7 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnChooseFile = new javax.swing.JButton();
         txtFile = new javax.swing.JTextField();
-        btnEncrypt = new javax.swing.JButton();
+        btnDecrypt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,12 +42,17 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
             }
         });
 
-        btnEncrypt.setText("Encrypt");
-        btnEncrypt.addActionListener(new java.awt.event.ActionListener() {
+        btnDecrypt.setText("Decrypt");
+        btnDecrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-					btnEncryptActionPerformed(evt);
-				} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+					try {
+						btnDecryptActionPerformed(evt);
+					} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -71,7 +76,7 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
                         .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
-                        .addComponent(btnEncrypt)))
+                        .addComponent(btnDecrypt)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,7 +89,7 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
                     .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnChooseFile))
                 .addGap(30, 30, 30)
-                .addComponent(btnEncrypt)
+                .addComponent(btnDecrypt)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
@@ -92,9 +97,9 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void btnChooseFileActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        JFileChooser chooser=new JFileChooser();
-        chooser.setAcceptAllFileFilterUsed(false);
-        javax.swing.filechooser.FileFilter filter=new FileNameExtensionFilter("JPG File","jpg");
+    	JFileChooser chooser=new JFileChooser();
+        //chooser.setAcceptAllFileFilterUsed(false);
+        javax.swing.filechooser.FileFilter filter=new FileNameExtensionFilter("Encrypted File",".ENCRYPTEDFILE");
         chooser.setFileFilter(filter);
         if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){
         f=chooser.getSelectedFile();
@@ -102,9 +107,9 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
         }
     }                                             
 
-    private void btnEncryptActionPerformed(java.awt.event.ActionEvent evt) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException, NoSuchAlgorithmException, NoSuchPaddingException {                                           
+    private void btnDecryptActionPerformed(java.awt.event.ActionEvent evt) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException, NoSuchAlgorithmException, NoSuchPaddingException {                                           
         ImageEncryption ob=new ImageEncryption();
-        ob.encrypt(f.getPath(), f.getPath()+".encryptedFile");
+        ob.decrypt(f.getPath(), f.getPath()+".jpg");
         this.dispose();
     }                                          
 
@@ -125,27 +130,27 @@ public class ImageEncryptionFront2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImageEncryptionFront2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ImageDecryptionFront.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImageEncryptionFront2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ImageDecryptionFront.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImageEncryptionFront2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ImageDecryptionFront.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImageEncryptionFront2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ImageDecryptionFront.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ImageEncryptionFront2().setVisible(true);
+                new ImageDecryptionFront().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnChooseFile;
-    private javax.swing.JButton btnEncrypt;
+    private javax.swing.JButton btnDecrypt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtFile;
     // End of variables declaration                   
